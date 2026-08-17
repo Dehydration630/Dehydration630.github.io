@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>张浩文 · AI 产品经理</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Colors */
+      --color-onyx-canvas: #171721;
+      --color-graphite-card: #1e1e2a;
+      --color-obsidian-button: #272735;
+      --color-slate-border: #70707d;
+      --color-mist-border: #e2e3ed;
+      --color-ash-text: #c3c3cc;
+      --color-ivory-text: #ededf3;
+      --color-cobalt: #5266eb;
+      --color-pure-white: #ffffff;
+
+      /* Typography — Font Families */
+      --font-arcadia: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-arcadiadisplay: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Typography — Scale */
+      --text-caption: 12px;
+      --text-body-sm: 14px;
+      --text-body: 16px;
+      --text-body-lg: 18px;
+      --text-subheading: 21px;
+      --text-heading-sm: 28px;
+      --text-heading: 32px;
+      --text-heading-lg: 42px;
+      --text-display: 65px;
+
+      /* Typography — Weights */
+      --font-weight-regular: 400;
+      --font-weight-w480: 480;
+      --font-weight-w530: 530;
+
+      /* Spacing */
+      --spacing-4: 4px;
+      --spacing-8: 8px;
+      --spacing-12: 12px;
+      --spacing-16: 16px;
+      --spacing-20: 20px;
+      --spacing-24: 24px;
+      --spacing-32: 32px;
+      --spacing-40: 40px;
+      --spacing-56: 56px;
+      --spacing-72: 72px;
+
+      /* Layout */
+      --page-max-width: 1200px;
+      --section-gap: 72px;
+      --card-padding: 32px;
+      --element-gap: 12px;
+
+      /* Border Radius */
+      --radius-md: 4px;
+      --radius-xl: 12px;
+      --radius-3xl: 32px;
+      --radius-3xl-2: 40px;
+      --radius-nav: 40px;
+      --radius-tags: 40px;
+      --radius-cards: 12px;
+      --radius-inputs: 32px;
+      --radius-buttons: 32px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-arcadia);
+      background: var(--color-onyx-canvas);
+      color: var(--color-ivory-text);
+      font-size: var(--text-body);
+      line-height: 1.5;
+      font-weight: var(--font-weight-regular);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: 0 var(--spacing-32);
+    }
+
+    /* Global Navigation — transparent over hero */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: transparent;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(23, 23, 33, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(112, 112, 125, 0.2);
+    }
+
+    nav .container {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-16);
+    }
+
+    nav .logo {
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-w480);
+      color: var(--color-ivory-text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: var(--spacing-8);
+    }
+
+    nav .nav-links a {
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-regular);
+      color: var(--color-ivory-text);
+      text-decoration: none;
+      padding: 8px 20px;
+      border-radius: var(--radius-nav);
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    nav .nav-links a:hover {
+      background: var(--color-obsidian-button);
+    }
+
+    /* Hero — full-bleed */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 18%, rgba(82, 102, 235, 0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 82% 82%, rgba(82, 102, 235, 0.08) 0%, transparent 70%),
+        var(--color-onyx-canvas);
+    }
+
+    .hero h1 {
+      font-family: var(--font-arcadiadisplay);
+      font-size: clamp(40px, 8vw, var(--text-display));
+      line-height: 1.15;
+      font-weight: var(--font-weight-w480);
+      letter-spacing: 0.01em;
+      color: var(--color-ivory-text);
+      margin-bottom: var(--spacing-24);
+    }
+
+    .hero .subtitle {
+      font-size: var(--text-subheading);
+      line-height: 1.35;
+      font-weight: var(--font-weight-w480);
+      color: var(--color-ivory-text);
+      margin-bottom: var(--spacing-12);
+    }
+
+    .hero .subtext {
+      font-size: var(--text-body-lg);
+      line-height: 1.6;
+      font-weight: var(--font-weight-w480);
+      color: var(--color-ash-text);
+      max-width: 640px;
+      margin: 0 auto var(--spacing-40);
+    }
+
+    .hero .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-16);
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      font-family: var(--font-arcadia);
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-regular);
+      text-decoration: none;
+      padding: 12px 24px;
+      transition: opacity 0.2s, background 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--color-cobalt);
+      color: var(--color-pure-white);
+      border-radius: var(--radius-buttons);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-ivory-text);
+      border: 1px solid var(--color-ivory-text);
+      border-radius: var(--radius-3xl-2);
+    }
+
+    .btn-ghost:hover {
+      background: var(--color-obsidian-button);
+    }
+
+    /* Sections */
+    section {
+      padding: var(--section-gap) 0;
+    }
+
+    .section-header {
+      margin-bottom: var(--spacing-48);
+      text-align: left;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-arcadiadisplay);
+      font-size: var(--text-heading);
+      line-height: 1.15;
+      font-weight: var(--font-weight-w480);
+      letter-spacing: 0.48px;
+      color: var(--color-ivory-text);
+      margin-bottom: var(--spacing-12);
+    }
+
+    .section-header p {
+      font-size: var(--text-body);
+      line-height: 1.5;
+      color: var(--color-ash-text);
+      max-width: 640px;
+    }
+
+    .section-center {
+      text-align: center;
+    }
+
+    .section-center .section-header p {
+      margin: 0 auto;
+    }
+
+    /* Graphite Card base */
+    .card {
+      background: var(--color-graphite-card);
+      border-radius: var(--radius-cards);
+      padding: var(--card-padding);
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-24);
+    }
+
+    .about-card h3 {
+      font-family: var(--font-arcadiadisplay);
+      font-size: var(--text-heading-sm);
+      line-height: 1.2;
+      font-weight: var(--font-weight-w480);
+      letter-spacing: 0.42px;
+      color: var(--color-ivory-text);
+      margin-bottom: var(--spacing-12);
+    }
+
+    .about-card p {
+      font-size: var(--text-body);
+      line-height: 1.5;
+      color: var(--color-ash-text);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--spacing-24);
+    }
+
+    .skill-card .index {
+      font-size: var(--text-caption);
+      font-weight: var(--font-weight-w480);
+      letter-spacing: 0.12px;
+      color: var(--color-ash-text);
+      margin-bottom: var(--spacing-16);
+    }
+
+    .skill-card h3 {
+      font-family: var(--font-arcadiadisplay);
+      font-size: var(--text-subheading);
+      line-height: 1.35;
+      font-weight: var(--font-weight-w480);
+      color: var(--color-ivory-text);
+      margin-bottom: var(--spacing-12);
+    }
+
+    .skill-card p {
+      font-size: var(--text-body);
+      line-height: 1.5;
+      color: var(--color-ash-text);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--spacing-24);
+    }
+
+    .project-card {
+      background: var(--color-graphite-card);
+      border-radius: var(--radius-cards);
+      overflow: hidden;
+    }
+
+    .project-card .thumb {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      background: linear-gradient(160deg, #2a2a3a 0%, var(--color-graphite-card) 100%);
+    }
+
+    .project-card .info {
+      padding: var(--spacing-32);
+      text-align: left;
+    }
+
+    .project-card .badge {
+      display: inline-block;
+      font-size: var(--text-caption);
+      font-weight: var(--font-weight-w480);
+      letter-spacing: 0.12px;
+      color: var(--color-ash-text);
+      background: var(--color-obsidian-button);
+      border-radius: var(--radius-tags);
+      padding: 4px 14px;
+      margin-bottom: var(--spacing-16);
+    }
+
+    .project-card h3 {
+      font-family: var(--font-arcadiadisplay);
+      font-size: var(--text-subheading);
+      line-height: 1.35;
+      font-weight: var(--font-weight-w480);
+      color: var(--color-ivory-text);
+      margin-bottom: var(--spacing-12);
+    }
+
+    .project-card p {
+      font-size: var(--text-body);
+      line-height: 1.5;
+      color: var(--color-ash-text);
+      margin-bottom: var(--spacing-24);
+    }
+
+    .link-arrow {
+      color: var(--color-ivory-text);
+      text-decoration: none;
+      font-size: var(--text-body);
+      transition: color 0.2s;
+    }
+
+    .link-arrow:hover {
+      color: var(--color-cobalt);
+    }
+
+    .link-arrow .arrow {
+      display: inline-block;
+      margin-left: 4px;
+      transition: transform 0.2s;
+    }
+
+    .link-arrow:hover .arrow {
+      transform: translateX(3px);
+    }
+
+    /* Contact */
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-16);
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-40);
+    }
+
+    .contact-links a {
+      display: inline-block;
+      font-size: var(--text-body);
+      font-weight: var(--font-weight-regular);
+      color: var(--color-ivory-text);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--color-ivory-text);
+      border-radius: var(--radius-3xl-2);
+      transition: background 0.2s;
+    }
+
+    .contact-links a:hover {
+      background: var(--color-obsidian-button);
+    }
+
+    .contact-email {
+      font-size: var(--text-body);
+      color: var(--color-ash-text);
+    }
+
+    /* Footer */
+    footer {
+      padding: var(--spacing-40) 0;
+      border-top: 1px solid rgba(112, 112, 125, 0.25);
+    }
+
+    footer .legal {
+      font-size: var(--text-caption);
+      line-height: 1.5;
+      font-weight: var(--font-weight-w480);
+      letter-spacing: 0.12px;
+      color: var(--color-ash-text);
+    }
+
+    footer .legal + .legal {
+      margin-top: var(--spacing-12);
+    }
+
+    footer .legal a {
+      color: var(--color-ash-text);
+      text-decoration: none;
+    }
+
+    footer .legal a:hover {
+      color: var(--color-ivory-text);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 var(--spacing-24);
+      }
+      nav .container {
+        height: 56px;
+      }
+      nav .nav-links {
+        gap: 0;
+      }
+      nav .nav-links a {
+        padding: 8px 14px;
+        font-size: var(--text-body-sm);
+      }
+      section {
+        padding: 56px 0;
+      }
+      .project-card .thumb {
+        height: 160px;
+        font-size: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Navigation -->
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">张浩文</a>
+      <div class="nav-links">
+        <a href="#about">关于我</a>
+        <a href="#skills">技能</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1>观察产品<br>洞察本质</h1>
+    <p class="subtitle">你好，我是张浩文，一名 AI 产品经理。</p>
+    <p class="subtext">广泛涉猎各类产品以拓宽视野，持续输出产品观察与深度思考。</p>
+    <div class="cta-group">
+      <a href="#projects" class="btn btn-primary">查看作品</a>
+      <a href="#contact" class="btn btn-ghost">了解更多</a>
+    </div>
+  </header>
+
+  <!-- 关于我 -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>关于我</h2>
+        <p>我是张浩文，一名 AI 产品经理。正广泛涉猎各类产品以拓宽视野，并通过持续的产品观察输出，沉淀对行业的思考。</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card card">
+          <h3>产品观察与输出</h3>
+          <p>广泛体验、拆解各类产品，持续输出产品观察，沉淀可复用的方法论。</p>
+        </div>
+        <div class="about-card card">
+          <h3>AI 与产品结合</h3>
+          <p>关注 AI 如何重塑产品形态与体验，探索 AI 原生应用的可能性。</p>
+        </div>
+        <div class="about-card card">
+          <h3>以用户为中心</h3>
+          <p>从真实场景出发理解需求，让每一个产品决策都有据可依、有的放矢。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能 -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <h2>我的技能</h2>
+        <p>产品经理的核心能力，是我持续打磨与精进的领域。</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card card">
+          <div class="index">01</div>
+          <h3>需求分析</h3>
+          <p>从用户与场景出发洞察真实需求，输出清晰的需求定义与优先级判断。</p>
+        </div>
+        <div class="skill-card card">
+          <div class="index">02</div>
+          <h3>产品设计</h3>
+          <p>梳理信息架构与交互流程，绘制产品原型，让复杂功能变得简单易用。</p>
+        </div>
+        <div class="skill-card card">
+          <div class="index">03</div>
+          <h3>数据分析</h3>
+          <p>用数据验证假设、驱动决策，从用户行为中提炼有价值的产品洞察。</p>
+        </div>
+        <div class="skill-card card">
+          <div class="index">04</div>
+          <h3>AI 应用</h3>
+          <p>紧跟 AI 技术演进，探索 AI 原生产品形态，把技术转化为产品价值。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 项目 -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <h2>我的项目</h2>
+        <p>持续输出的产品观察与思考，记录着我的探索与成长。</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="thumb">🤖</div>
+          <div class="info">
+            <span class="badge">精选</span>
+            <h3>万字剖析问小团</h3>
+            <p>美团如何用 AI 重做本地生活——一篇关于 AI 产品的深度观察与思考。</p>
+            <a href="https://mp.weixin.qq.com/s/KiV_kifbQdZsJ6aagLU6TQ" target="_blank" rel="noopener" class="link-arrow">阅读全文 <span class="arrow">›</span></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="thumb">🚀</div>
+          <div class="info">
+            <h3>项目二</h3>
+            <p>待补充——这里将展示我的下一个作品。</p>
+            <a href="#" class="link-arrow">了解更多 <span class="arrow">›</span></a>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="thumb">🧩</div>
+          <div class="info">
+            <h3>项目三</h3>
+            <p>待补充——这里将展示我的下一个作品。</p>
+            <a href="#" class="link-arrow">了解更多 <span class="arrow">›</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section id="contact" class="section-center">
+    <div class="container">
+      <div class="section-header">
+        <h2>联系我</h2>
+        <p>无论合作、交流，还是仅仅打个招呼，都欢迎随时联系。</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:zhw_143011@foxmail.com">邮箱</a>
+        <a href="https://github.com/Dehydration630" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" target="_blank" rel="noopener">小红书</a>
+      </div>
+      <p class="contact-email">zhw_143011@foxmail.com</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="legal">© 2025 张浩文 · 用心打造每一个细节</p>
+      <p class="legal">保持观察，保持思考。</p>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  </script>
+
+</body>
+</html>
