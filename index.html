@@ -482,7 +482,7 @@
         font-size: 44px;
       }
     }
-    /* Gallery / Photos — Bento Grid 布局 */
+    /* Gallery / Photos — 精选大图 + 小图网格 */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -497,14 +497,10 @@
       background: var(--color-graphite-card);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    /* 大图：跨2列，16:9 横幅比例 */
-    .gallery-item.large {
-      grid-column: span 2;
-      aspect-ratio: 16 / 9;
-    }
-    /* 中图：4:3 比例 */
-    .gallery-item.medium {
-      aspect-ratio: 4 / 3;
+    /* 全宽大图：占满整行，16:9 比例 */
+    .gallery-item.featured {
+      grid-column: 1 / -1;
+      aspect-ratio: 21 / 9;
     }
     /* 小图：1:1 正方形 */
     .gallery-item.small {
@@ -522,44 +518,49 @@
       transition: transform 0.3s;
     }
     .gallery-item:hover img {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
     .gallery-item .caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 10px 14px;
+      padding: 12px 16px;
       background: linear-gradient(transparent, rgba(0,0,0,0.88));
       color: var(--color-ivory-text);
-      font-size: var(--text-caption);
+      font-size: var(--text-body-sm);
       line-height: 1.4;
       opacity: 0;
       transition: opacity 0.2s;
     }
-    .gallery-item.large .caption {
-      padding: 14px 18px;
-      font-size: var(--text-body-sm);
+    .gallery-item.featured .caption {
+      padding: 20px 28px;
+      font-size: var(--text-body);
+    }
+    .gallery-item.featured .caption strong {
+      font-size: var(--text-subheading);
     }
     .gallery-item:hover .caption {
       opacity: 1;
     }
     .gallery-item .badge-tag {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 12px;
+      left: 12px;
       background: rgba(82, 102, 235, 0.92);
       color: white;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
-      padding: 4px 10px;
+      padding: 5px 12px;
       border-radius: 20px;
       letter-spacing: 0.3px;
       backdrop-filter: blur(4px);
     }
-    .gallery-item.large .badge-tag {
-      font-size: 12px;
-      padding: 5px 12px;
+    .gallery-item.featured .badge-tag {
+      top: 16px;
+      left: 16px;
+      font-size: 13px;
+      padding: 6px 14px;
     }
     /* Lightbox */
     .lightbox {
@@ -648,11 +649,10 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
       }
-      .gallery-item.large {
-        grid-column: span 2;
+      .gallery-item.featured {
+        grid-column: 1 / -1;
         aspect-ratio: 16 / 9;
       }
-      .gallery-item.medium,
       .gallery-item.small {
         aspect-ratio: 1 / 1;
       }
@@ -920,11 +920,10 @@
 
     // 生成相册网格
     const grid = document.getElementById('photoGrid');
-    // 前5张精选图的尺寸：large=跨2列横幅，medium=4:3，其余为small=1:1
-    const sizeMap = ['large', 'medium', 'medium', 'large', 'medium'];
+    // 前5张为精选全宽大图，其余为小图
     photos.forEach((photo, index) => {
       const item = document.createElement('div');
-      const sizeClass = sizeMap[index] || 'small';
+      const sizeClass = index < 5 ? 'featured' : 'small';
       item.className = `gallery-item ${sizeClass}`;
       item.innerHTML = `
         <img src="images/photos/thumb/${photo.id}.jpg" alt="${photo.title}" loading="lazy">
