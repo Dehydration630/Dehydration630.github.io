@@ -200,6 +200,61 @@
       flex-wrap: wrap;
     }
 
+    /* Hero 音频波形动画背景 */
+    .hero-waves {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      overflow: hidden;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .wave-bar {
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to top, var(--color-cobalt), rgba(82,102,235,0.3));
+      border-radius: 2px;
+      animation: wavePulse 2s ease-in-out infinite;
+    }
+    @keyframes wavePulse {
+      0%, 100% { height: 20%; }
+      50% { height: 100%; }
+    }
+
+    /* Hero 标题逐字淡入 */
+    .hero h1 .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: charFadeIn 0.6s ease forwards;
+    }
+    .hero h1 .char-space {
+      display: inline-block;
+      width: 0.3em;
+    }
+    @keyframes charFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .hero .subtitle,
+    .hero .subtext,
+    .hero .cta-group {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .hero .subtitle { animation-delay: 0.8s; }
+    .hero .subtext { animation-delay: 1.1s; }
+    .hero .cta-group { animation-delay: 1.4s; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Buttons */
     .btn {
       display: inline-block;
@@ -688,6 +743,58 @@
       color: var(--color-ash-text);
       font-size: var(--text-caption);
     }
+
+    /* 滚动进入动画 */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+    .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+    .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+    .animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+
+    /* 导航栏当前位置高亮 */
+    nav .nav-links a.active {
+      background: var(--color-obsidian-button);
+      color: var(--color-cobalt);
+      font-weight: 500;
+    }
+
+    /* 项目卡片渐变色块缩略图 */
+    .project-card .thumb {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .thumb-grad {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .thumb-letter {
+      font-size: 64px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      letter-spacing: -2px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      z-index: 1;
+    }
+    .grad-leitcue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .grad-stagecue { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+    .grad-scoreeval { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+    .grad-article { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+
     @media (max-width: 768px) {
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -727,7 +834,11 @@
 
   <!-- Hero -->
   <header class="hero">
-    <h1>让 AI 听懂<br>音乐的故事</h1>
+    <div class="hero-waves" id="heroWaves"></div>
+    <h1>
+      <span class="char" style="animation-delay: 0s">让</span><span class="char-space"></span><span class="char" style="animation-delay: 0.08s">A</span><span class="char" style="animation-delay: 0.14s">I</span><span class="char-space"></span><span class="char" style="animation-delay: 0.22s">听</span><span class="char" style="animation-delay: 0.28s">懂</span><br>
+      <span class="char" style="animation-delay: 0.36s">音</span><span class="char" style="animation-delay: 0.42s">乐</span><span class="char" style="animation-delay: 0.48s">的</span><span class="char" style="animation-delay: 0.54s">故</span><span class="char" style="animation-delay: 0.6s">事</span>
+    </h1>
     <p class="subtitle">你好，我是张浩文，一名 AI 音乐产品经理。</p>
     <p class="subtext">5 年乐队一线实践 × 小红书 AI 产品经验，专注 AI 音乐生成、评测与产品化，把音乐人的真实需求转化为可落地的 AI 产品。</p>
     <div class="cta-group">
@@ -801,7 +912,7 @@
       </div>
       <div class="projects-grid">
         <div class="project-card">
-          <div class="thumb">🎬</div>
+          <div class="thumb"><div class="thumb-grad grad-leitcue"><span class="thumb-letter">L</span></div></div>
           <div class="info">
             <span class="badge">主力项目</span>
             <h3>LeitCue「乐叙」— AI 视频配乐</h3>
@@ -810,7 +921,7 @@
           </div>
         </div>
         <div class="project-card">
-          <div class="thumb">🎤</div>
+          <div class="thumb"><div class="thumb-grad grad-stagecue"><span class="thumb-letter">S</span></div></div>
           <div class="info">
             <span class="badge">开发中</span>
             <h3>StageCue「乐发」— 演出宣发管理</h3>
@@ -819,7 +930,7 @@
           </div>
         </div>
         <div class="project-card">
-          <div class="thumb">📊</div>
+          <div class="thumb"><div class="thumb-grad grad-scoreeval"><span class="thumb-letter">S</span></div></div>
           <div class="info">
             <span class="badge">开发中</span>
             <h3>ScoreEval「乐测」— AI 音乐评测工作台</h3>
@@ -828,7 +939,7 @@
           </div>
         </div>
         <div class="project-card">
-          <div class="thumb">🤖</div>
+          <div class="thumb"><div class="thumb-grad grad-article"><span class="thumb-letter">文</span></div></div>
           <div class="info">
             <span class="badge">产品分析</span>
             <h3>万字剖析问小团</h3>
@@ -945,6 +1056,74 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
+
+    // === Hero 音频波形动画 ===
+    (function initWaves() {
+      const container = document.getElementById('heroWaves');
+      if (!container) return;
+      const barCount = 48;
+      for (let i = 0; i < barCount; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'wave-bar';
+        bar.style.left = (i / barCount * 100) + '%';
+        bar.style.height = (20 + Math.random() * 60) + '%';
+        bar.style.animationDelay = (Math.random() * 2) + 's';
+        bar.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+        container.appendChild(bar);
+      }
+    })();
+
+    // === 滚动进入动画 ===
+    (function initScrollAnimations() {
+      // 自动给需要动画的元素添加 class
+      const animatedSelectors = [
+        '.section-header',
+        '.about-card',
+        '.skill-card',
+        '.project-card',
+        '.gallery-item',
+        '.video-wrapper',
+        '.video-info',
+        '.contact-links'
+      ];
+      document.querySelectorAll(animatedSelectors.join(',')).forEach((el, i) => {
+        el.classList.add('animate-on-scroll');
+        // 同组元素依次延迟
+        const delay = (i % 4) * 0.1;
+        if (delay > 0) el.classList.add('delay-' + (delay / 0.1));
+      });
+
+      // Intersection Observer 触发动画
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    })();
+
+    // === 导航栏当前位置高亮 ===
+    (function initNavHighlight() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('nav .nav-links a');
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+      sections.forEach(section => navObserver.observe(section));
+    })();
 
     // 演出照片数据（前5张为指定精选全宽大图：019/026/022/023/017；其余21张为小图，按原顺序）
     const photos = [
