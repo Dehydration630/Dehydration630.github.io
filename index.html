@@ -6,7 +6,7 @@
   <title>张浩文 · AI 音乐产品经理</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       /* Colors */
@@ -17,12 +17,15 @@
       --color-mist-border: #e2e3ed;
       --color-ash-text: #c3c3cc;
       --color-ivory-text: #ededf3;
-      --color-cobalt: #5266eb;
+      --color-cobalt: #6366f1;
+      --color-cobalt-light: #818cf8;
+      --color-violet: #8b5cf6;
+      --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
       --color-pure-white: #ffffff;
 
       /* Typography — Font Families */
       --font-arcadia: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-arcadiadisplay: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-arcadiadisplay: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
       /* Typography — Scale */
       --text-caption: 12px;
@@ -37,7 +40,7 @@
 
       /* Typography — Weights */
       --font-weight-regular: 400;
-      --font-weight-w480: 480;
+      --font-weight-w480: 600;
       --font-weight-w530: 530;
 
       /* Spacing */
@@ -160,17 +163,19 @@
       justify-content: center;
       text-align: center;
       padding: 120px 24px 80px;
+      position: relative;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 18%, rgba(82, 102, 235, 0.16) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 82% 82%, rgba(82, 102, 235, 0.08) 0%, transparent 70%),
-        var(--color-onyx-canvas);
+        radial-gradient(ellipse 70% 50% at 50% 15%, rgba(99, 102, 241, 0.2) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 35% at 15% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 55%),
+        linear-gradient(180deg, #1a1a2e 0%, #171721 100%);
     }
 
     .hero h1 {
       font-family: var(--font-arcadiadisplay);
       font-size: clamp(40px, 8vw, var(--text-display));
       line-height: 1.15;
-      font-weight: var(--font-weight-w480);
+      font-weight: 600;
       letter-spacing: 0.01em;
       color: var(--color-ivory-text);
       margin-bottom: var(--spacing-24);
@@ -215,7 +220,7 @@
       position: absolute;
       bottom: 0;
       width: 3px;
-      background: linear-gradient(to top, var(--color-cobalt), rgba(82,102,235,0.3));
+      background: linear-gradient(to top, var(--color-cobalt), rgba(99, 102, 241, 0.3));
       border-radius: 2px;
       animation: wavePulse 2s ease-in-out infinite;
     }
@@ -255,6 +260,20 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* 通用 SVG 图标 */
+    .icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+    .icon-lg {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+    }
+
     /* Buttons */
     .btn {
       display: inline-block;
@@ -267,13 +286,16 @@
     }
 
     .btn-primary {
-      background: var(--color-cobalt);
+      background: var(--gradient-primary);
       color: var(--color-pure-white);
       border-radius: var(--radius-buttons);
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
     }
 
     .btn-primary:hover {
-      opacity: 0.88;
+      opacity: 0.92;
+      box-shadow: 0 6px 28px rgba(99, 102, 241, 0.45);
+      transform: translateY(-1px);
     }
 
     .btn-ghost {
@@ -856,15 +878,15 @@
       </div>
       <div class="about-grid">
         <div class="about-card card">
-          <h3>🎸 音乐一线实践</h3>
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>音乐一线实践</h3>
           <p>5 年乐队主理人经历，覆盖创作、排练、演出、宣发、商业化全流程。累计演出 50+ 场，对接 Live House、音乐节、商演资源，懂音乐人真正需要什么。</p>
         </div>
         <div class="about-card card">
-          <h3>🤖 大厂 AI 产品</h3>
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4"/><circle cx="12" cy="2" r="1"/><path d="M8 14h.01"/><path d="M16 14h.01"/><path d="M2 14v2"/><path d="M22 14v2"/></svg>大厂 AI 产品</h3>
           <p>小红书 AIPM，负责美妆行业效果广告 AI 审核与模型评测。搭建 Dify 自动化链路，日均处理 5 万+ 素材，VVR 从 0.84% 压降至 0.4% 以下。</p>
         </div>
         <div class="about-card card">
-          <h3>🎹 AI × 音乐项目</h3>
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>AI × 音乐项目</h3>
           <p>GitHub 持续发布 AI 音乐项目：LeitCue（AI 视频配乐）、StageCue（演出宣发管理）、ScoreEval（AI 音乐评测）。从音乐人真实需求出发，用 Vibe Coding 快速落地。</p>
         </div>
       </div>
@@ -960,17 +982,17 @@
       </div>
       <div class="about-grid">
         <div class="about-card card">
-          <h3>🎸 海狮乐队（2023—至今）</h3>
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>海狮乐队（2023—至今）</h3>
           <p><strong>音乐品牌主理人 / 吉他手</strong><br>
           毕业后持续经营的乐队，从兴趣活动走向商业化运营。累计演出 50+ 场，覆盖北京、天津等 5+ 城市，Live House 演出 20+ 场，商演 30+ 场，10+ 客户复购。对接 School、疆进酒、MAO、乐空间等场地，通过 ShowMax 星图、鹿儿传媒等平台获取商演资源。</p>
         </div>
         <div class="about-card card">
-          <h3>🎸 龙舌兰乐队（2018—2021）</h3>
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>龙舌兰乐队（2018—2021）</h3>
           <p><strong>乐队主理人 / 吉他手</strong><br>
           大学期间组建的第一支乐队，从校园音乐节起步，逐步进入上海 Live House 演出。负责曲目准备、排练组织、现场执行和场地对接，完成了从兴趣活动到稳定项目的转变。积累了组队、排练、演出的早期经验。</p>
         </div>
         <div class="about-card card">
-          <h3>🎵 音乐作品与演出</h3>
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg>音乐作品与演出</h3>
           <p>原创作品涵盖独立摇滚、后朋克、另类摇滚等风格。演出视频、原创作品、现场照片可在网易云音乐、B站和小红书查看。持续创作中，音乐是我理解产品、理解用户的底层能力。</p>
         </div>
       </div>
