@@ -1111,18 +1111,32 @@
       const sections = document.querySelectorAll('section[id]');
       const navLinks = document.querySelectorAll('nav .nav-links a');
 
-      const navObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            navLinks.forEach(link => {
-              link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-            });
+      function updateActiveNav() {
+        const scrollY = window.scrollY;
+        const offset = 120; // 导航栏高度+缓冲
+        let currentId = '';
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - offset;
+          const sectionBottom = sectionTop + section.offsetHeight;
+          if (scrollY >= sectionTop && scrollY < sectionBottom) {
+            currentId = section.getAttribute('id');
           }
         });
-      }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
 
-      sections.forEach(section => navObserver.observe(section));
+        // 滚动到页面底部时，强制高亮最后一个 section
+        if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 20) {
+          currentId = sections[sections.length - 1].getAttribute('id');
+        }
+
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+      window.addEventListener('resize', updateActiveNav);
+      updateActiveNav(); // 初始化
     })();
 
     // 演出照片数据（前5张为指定精选全宽大图：019/026/022/023/017；其余21张为小图，按原顺序）
