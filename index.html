@@ -562,6 +562,50 @@
       font-size: 13px;
       padding: 6px 14px;
     }
+    /* Video / 演出视频 */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 */
+      border-radius: var(--radius-cards);
+      overflow: hidden;
+      background: var(--color-graphite-card);
+      margin-top: var(--spacing-24);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-info {
+      margin-top: var(--spacing-16);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--spacing-16);
+      flex-wrap: wrap;
+    }
+    .video-info h3 {
+      font-size: var(--text-subheading);
+      font-weight: var(--font-weight-w480);
+      color: var(--color-ivory-text);
+      margin-bottom: var(--spacing-4);
+    }
+    .video-info p {
+      font-size: var(--text-body-sm);
+      color: var(--color-ash-text);
+      line-height: 1.5;
+    }
+    .video-meta {
+      font-size: var(--text-caption);
+      color: var(--color-ash-text);
+      white-space: nowrap;
+    }
     /* Lightbox */
     .lightbox {
       display: none;
@@ -674,6 +718,7 @@
         <a href="#skills">技能</a>
         <a href="#projects">项目</a>
         <a href="#music">音乐</a>
+        <a href="#video">视频</a>
         <a href="#gallery">相册</a>
         <a href="#contact">联系</a>
       </div>
@@ -817,6 +862,29 @@
           <h3>🎵 音乐作品与演出</h3>
           <p>原创作品涵盖独立摇滚、后朋克、另类摇滚等风格。演出视频、原创作品、现场照片可在网易云音乐、B站和小红书查看。持续创作中，音乐是我理解产品、理解用户的底层能力。</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 演出视频 -->
+  <section id="video">
+    <div class="container">
+      <div class="section-header">
+        <h2>演出视频</h2>
+        <p>海狮乐队现场演出实录，感受舞台上的能量与氛围。</p>
+      </div>
+      <div class="video-wrapper">
+        <video controls preload="metadata" poster="images/photos/thumb/019.jpg" playsinline>
+          <source src="images/videos/live-performance.mp4" type="video/mp4">
+          您的浏览器不支持视频播放。
+        </video>
+      </div>
+      <div class="video-info">
+        <div>
+          <h3>海狮乐队现场演出</h3>
+          <p>独立摇滚现场，吉他手舞台表演实录。</p>
+        </div>
+        <div class="video-meta">约 4 分钟 · 现场录音</div>
       </div>
     </div>
   </section>
