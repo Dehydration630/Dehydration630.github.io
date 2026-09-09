@@ -849,34 +849,44 @@
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // 演出照片数据（优化描述，突出商业价值与成长路径）
+    // 演出照片数据（按演出规格/照片质量排序，高质量在前；单张专属描述，简洁客观）
     const photos = [
-      { id: '001', tag: '校园演出', title: '复旦大学音乐节', date: '2017.11', location: '上海·复旦大学', desc: 'Pink More 乐队受邀作为外校嘉宾参演复旦大学音乐节，面向千余名师生演出，完成跨校演出资源对接。' },
-      { id: '002', tag: '校园演出', title: 'Pink More 现场', date: '2017—2018', location: '上海', desc: 'Pink More 乐队现场演出，大学期间累计参与校园演出 10+ 场，积累现场执行与舞台经验。' },
-      { id: '003', tag: '校园演出', title: '上大伟长楼开楼演出', date: '2018.01', location: '上海大学伟长楼', desc: 'Pink More 乐队参演上海大学伟长楼开楼纪念演出，活动登上校官网首页，面向全校师生的高规格演出。' },
-      { id: '004', tag: '校园演出', title: '伟长楼舞台特写', date: '2018.01', location: '上海大学伟长楼', desc: '同场演出的舞台特写，负责曲目编排与现场执行。' },
-      { id: '005', tag: '校园演出', title: 'Pink More 演出', date: '2017—2018', location: '上海', desc: 'Pink More 乐队演出现场，大学期间作为吉他手参与乐队全流程运营。' },
-      { id: '006', tag: 'Livehouse', title: '昆明 MAO 联合演出', date: '2018.02', location: '昆明 MAO Livehouse', desc: '与高中同学乐队"冻雾原"自发筹办联合演出，独立完成场地对接、曲目编排与现场执行，首次尝试商业化演出运营。' },
-      { id: '007', tag: '校园演出', title: '校园草地音乐节', date: '2018.09', location: '上海大学', desc: '龙舌兰乐队参演校园草地音乐节，作为乐队主理人负责成员协调、排练组织与现场演出。' },
-      { id: '008', tag: 'Livehouse', title: '龙舌兰 Livehouse', date: '2018—2021', location: '上海', desc: '龙舌兰乐队现场演出，从校园音乐节逐步进入上海 Livehouse 演出 circuit，完成从兴趣活动到稳定项目的转变。' },
-      { id: '009', tag: '舞台特写', title: '吉他手特写', date: '2018—2021', location: '上海', desc: '吉他手舞台表演特写，多年乐队实践中持续打磨舞台表现力与现场即兴能力。' },
-      { id: '010', tag: '商演', title: '精酿酒吧商演', date: '2021', location: '上海·柠檬鲨精酿', desc: '在精酿酒吧"柠檬鲨"完成个人单编商演，独立完成曲目准备、设备调试与现场演出，开启个人商业化演出路径。' },
-      { id: '011', tag: '商演', title: '夜市集市商演', date: '2021', location: '上海', desc: '在城市夜市集市活动完成个人商演，面向流动观众的快闪式演出，锻炼快速适应不同场地与观众的能力。' },
-      { id: '012', tag: 'Livehouse', title: '北京江湖酒吧', date: '2023', location: '北京·江湖酒吧', desc: '海狮乐队在北京江湖酒吧的演出特写，来京后快速融入北京 Livehouse 演出场景。' },
-      { id: '013', tag: 'Livehouse', title: '演出前调音', date: '2023', location: '北京·叁更 Timekeepers', desc: '演出前调音阶段的工作照，作为乐队主理人负责设备调试、声场确认与演出前全流程准备。' },
-      { id: '014', tag: '幕后', title: '音乐活动合照', date: '2023', location: '北京', desc: '海狮乐队集体参加行业音乐活动，持续拓展音乐人脉与演出资源，为乐队商业化运营建立合作网络。' },
-      { id: '015', tag: '幕后', title: '乐队排练', date: '2023—至今', location: '北京', desc: '海狮乐队日常排练，作为主理人负责排练计划制定、曲目编排与成员协调，每周固定排练保持演出状态。' },
-      { id: '016', tag: '商演', title: '屯里 Sanctuary 商演', date: '2024', location: '北京·屯里 Sanctuary', desc: '海狮乐队在屯里 Sanctuary 酒吧的商演，通过商业演出平台获取稳定演出机会，实现乐队项目商业化。' },
-      { id: '017', tag: '商演', title: '商业演出现场', date: '2023—2025', location: '北京', desc: '海狮乐队商演现场，累计完成商演 30+ 场，覆盖酒吧、品牌活动、企业年会等多种场景，10+ 客户复购。' },
-      { id: '018', tag: '校园演出', title: '北理工校园音乐节', date: '2024', location: '北京理工大学', desc: '海狮乐队受邀参演北京理工大学校园音乐节，面向数千名学生演出，拓展高校演出市场。' },
-      { id: '019', tag: '音乐节', title: '声浪奔跑音乐节', date: '2026.04', location: '北京', desc: '海狮乐队登上大型音乐节舞台，从 Livehouse 到音乐节的进阶，演出覆盖数千名观众，标志乐队进入更高规格演出层级。' },
-      { id: '020', tag: '音乐节', title: '音乐节舞台全景', date: '2026.04', location: '北京·声浪奔跑音乐节', desc: '同场音乐节的舞台全景，大型音乐节的舞台制作与观众规模，验证乐队从校园到商业再到音乐节的完整成长路径。' },
-      { id: '021', tag: '音乐节', title: '音乐节演出', date: '2024—2026', location: '北京', desc: '海狮乐队音乐节演出现场，持续参与各类音乐节演出，积累大型舞台经验。' },
-      { id: '022', tag: 'Livehouse', title: 'DDC 售票演出', date: '2024', location: '北京·DDC 黄昏黎明俱乐部', desc: '海狮乐队在 DDC 黄昏黎明俱乐部的售票演出，北京知名 Livehouse 场地，完成从商演到售票演出的进阶，验证乐队票房号召力。' },
-      { id: '023', tag: 'Livehouse', title: '售票演出现场', date: '2023—2025', location: '北京', desc: '海狮乐队 Livehouse 售票演出现场，累计完成售票演出 20+ 场，平均上座率 70%+，单场最高 200+ 人。' },
-      { id: '024', tag: 'Livehouse', title: '观众视角', date: '2023—2025', location: '北京', desc: '演出现场观众视角，Livehouse 售票演出的氛围与观众互动，持续打磨现场演出质量与观众体验。' },
-      { id: '025', tag: 'Livehouse', title: '舞台高光', date: '2023—2025', location: '北京', desc: '舞台表演特写，海狮乐队在 Livehouse 售票演出中的高光时刻，多年乐队实践的舞台表现力积累。' },
-      { id: '026', tag: '音乐节', title: '北湖音乐节', date: '2025', location: '北湖音乐节', desc: '海狮乐队登上北湖音乐节舞台，持续参与大型音乐节演出，拓展更广泛的观众群体与品牌影响力。' },
+      // 第一梯队：大型音乐节
+      { id: '019', tag: '音乐节', title: '声浪奔跑音乐节', date: '2026.04', location: '北京', desc: '海狮乐队登上大型音乐节主舞台，现场观众数千人。' },
+      { id: '020', tag: '音乐节', title: '音乐节舞台全景', date: '2026.04', location: '北京·声浪奔跑音乐节', desc: '音乐节舞台全景，大型舞台制作与专业灯光音响配置。' },
+      { id: '026', tag: '音乐节', title: '北湖音乐节', date: '2025', location: '北湖音乐节', desc: '海狮乐队参演北湖音乐节，户外大型舞台演出。' },
+      { id: '021', tag: '音乐节', title: '音乐节演出', date: '2024—2026', location: '北京', desc: '海狮乐队音乐节演出现场。' },
+      // 第二梯队：Livehouse 售票演出
+      { id: '022', tag: 'Livehouse', title: 'DDC 售票演出', date: '2024', location: '北京·DDC 黄昏黎明俱乐部', desc: '海狮乐队售票演出，北京知名 Livehouse 场地。' },
+      { id: '023', tag: 'Livehouse', title: '售票演出现场', date: '2023—2025', location: '北京', desc: '海狮乐队售票演出现场，单场观众 200+ 人。' },
+      { id: '025', tag: 'Livehouse', title: '舞台高光', date: '2023—2025', location: '北京', desc: '海狮乐队舞台表演高光时刻，吉他手独奏段落。' },
+      { id: '024', tag: 'Livehouse', title: '观众视角', date: '2023—2025', location: '北京', desc: '演出观众视角，现场氛围与观众互动。' },
+      // 第三梯队：北京 Livehouse
+      { id: '012', tag: 'Livehouse', title: '北京江湖酒吧', date: '2023', location: '北京·江湖酒吧', desc: '海狮乐队在北京江湖酒吧的 Livehouse 演出。' },
+      { id: '013', tag: 'Livehouse', title: '演出前调音', date: '2023', location: '北京·叁更 Timekeepers', desc: '演出前设备调试与声场确认。' },
+      // 第四梯队：商业演出
+      { id: '016', tag: '商演', title: '屯里 Sanctuary 商演', date: '2024', location: '北京·屯里 Sanctuary', desc: '海狮乐队在屯里 Sanctuary 酒吧的商业演出。' },
+      { id: '017', tag: '商演', title: '商业演出现场', date: '2023—2025', location: '北京', desc: '海狮乐队商演现场，酒吧演出场景。' },
+      // 第五梯队：校园演出（北京）
+      { id: '018', tag: '校园演出', title: '北理工校园音乐节', date: '2024', location: '北京理工大学', desc: '海狮乐队校园音乐节演出，面向数千名学生。' },
+      // 第六梯队：幕后
+      { id: '014', tag: '幕后', title: '音乐活动合照', date: '2023', location: '北京', desc: '海狮乐队参加行业音乐活动，全员合照。' },
+      { id: '015', tag: '幕后', title: '乐队排练', date: '2023—至今', location: '北京排练室', desc: '海狮乐队日常排练，曲目打磨与成员合练。' },
+      // 第七梯队：个人商演
+      { id: '010', tag: '商演', title: '精酿酒吧商演', date: '2021', location: '上海·柠檬鲨精酿', desc: '个人单编商演，一人一吉他完成整场演出。' },
+      { id: '011', tag: '商演', title: '夜市集市商演', date: '2021', location: '上海', desc: '个人商演，户外快闪式演出场景。' },
+      // 第八梯队：早期 Livehouse
+      { id: '006', tag: 'Livehouse', title: '昆明 MAO 联合演出', date: '2018.02', location: '昆明 MAO Livehouse', desc: '与冻雾原乐队联合演出，独立筹办场地与档期。' },
+      { id: '008', tag: 'Livehouse', title: '龙舌兰 Livehouse', date: '2018—2021', location: '上海', desc: '龙舌兰乐队演出现场。' },
+      // 第九梯队：早期校园演出
+      { id: '001', tag: '校园演出', title: '复旦大学音乐节', date: '2017.11', location: '上海·复旦大学', desc: 'Pink More 乐队作为外校嘉宾参演复旦大学音乐节。' },
+      { id: '003', tag: '校园演出', title: '上大伟长楼开楼演出', date: '2018.01', location: '上海大学伟长楼', desc: '开楼纪念演出，活动登上校官网首页。' },
+      { id: '004', tag: '校园演出', title: '伟长楼舞台特写', date: '2018.01', location: '上海大学伟长楼', desc: '舞台表演特写，吉他手演出镜头。' },
+      { id: '007', tag: '校园演出', title: '校园草地音乐节', date: '2018.09', location: '上海大学', desc: '校园草地音乐节，龙舌兰乐队户外演出。' },
+      { id: '002', tag: '校园演出', title: 'Pink More 现场', date: '2017—2018', location: '上海', desc: 'Pink More 乐队演出现场。' },
+      { id: '005', tag: '校园演出', title: 'Pink More 演出', date: '2017—2018', location: '上海', desc: 'Pink More 乐队演出，吉他手舞台镜头。' },
+      // 第十梯队：特写
+      { id: '009', tag: '舞台特写', title: '吉他手特写', date: '2018—2021', location: '上海', desc: '吉他手舞台表演特写。' },
     ];
 
     // 生成相册网格
